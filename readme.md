@@ -22,7 +22,7 @@ Strife, conflict, friction, hostility, disagreement. Come chat with us! We'll be
 **tjctf{we_love_wumpus}**
 
 ```
-Flag is pinned in the Discord server announcements channel
+Flag is pinned in the Discord server's announcements channel
 ```
 
 ### Censorship
