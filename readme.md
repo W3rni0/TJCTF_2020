@@ -22,7 +22,7 @@ Strife, conflict, friction, hostility, disagreement. Come chat with us! We'll be
 **tjctf{we_love_wumpus}**
 
 ```
-Flag is pinned in the Discord server
+Flag is pinned in the Discord server announcements channel
 ```
 
 ### Censorship
@@ -40,14 +40,14 @@ we are greeted with the following meessege:
 ![](assets//images//censorship_1.png)
 
 ```
-When you submit the answer (in this case it's obviously 27) we get following meessege:
+When we submit the answer (in this case it's obviously 27) we get following meessege:
 ```
 ![](assets//images//censorship_2.png)
 
 ```
-Which is not the flag (trust me i checked multiple times), when we sumbit a wrong answer we get nothing, my first thought was
-that the flag returned is random and there is a chance that the real flag will be returned so i wrote a python script which connects
-to the server, read the question and answer it automatically:
+Which is not the flag (trust me i checked multiple times), when we sumbit a wrong answer we get nothing,
+my first thought was that the flag returned is random and there is a chance that the real flag will be returned,
+so i wrote a short python script which connects to the server, reads the question and answers it:
 ```
 ```python 3
 from pwn import remote
@@ -64,14 +64,17 @@ print(s.recv())
 s.close()
 ```
 ```
-and during debugging I noticed something strange is happening with
-the output:
+and during debugging I noticed something strange is happening with the output:
 ```
 ![](assets//images//censorship_3.png)
 
 ```
-as you can see the server is actually returing to us the flag each
-time we answer correctly, but, we can't see it when it's printed in the terminal, the reason is that '\r' symbol after the flag, the symbol stands for carriage return, and in most terminal nowdays it deletes the written messege and returns the cursor to the start of line, using this symbol can actually make cool loking animation and most of the animation we see in terminals nowdays use this symbol.
+as you can see the server is actually returing us the flag each time we answer correctly.
+but, we can't see it when the output is printed in the terminal,
+the reason is that '\r' symbol after the flag, the symbol stands for carriage return,
+and in most terminal nowdays it deletes the written messege and returns the cursor to the start of line,
+using this symbol can actually make cool loking animation and most of the animation
+we see in terminals nowdays use this symbol.
 ```
 
 ### Timed
@@ -90,19 +93,19 @@ When we connect to the server we get the following messege:
 I tried using Unix commands first and quickly discovered by the error messeges
 that the commands need to be python commands, furthermore, we can't see the output
 of the executed commands and but only the time it took for the commands to execute
-or an error message if an error occurred.
-in this point i tried using python commands and modules
+or an error message if an error occurred while executing the commands.
+I tried using python commands and modules
 to escape the shell or get a reverse shell going from the server to my host,
 for each command I tried I got the following messege:
 ```
 ![](assets//images//timed_2.png)
 
 ```
-In this point I gave up on getting a shell and tried to see what I can
+At this point I gave up on getting a shell and tried to see what I can
 do in this limited enviroment, I wanted to determine first if the commands are
-executed in python 2 and python 3, for that i checked if python recognized
-basestring, a abstract type which can't be found in python 3 and will raise an
-exception in it:
+executed in python 2 or python 3, for that I checked if python recognized
+basestring, an abstract type which can't be found in python 3 and will raise an
+exception:
 ```
 ![](assets//images//timed_python2.png)
 
@@ -116,17 +119,18 @@ file flag.txt:
 ![](assets//images//timed_3.png)
 
 ```
-We can read flag.txt, now we need to discover the flag using our only
-two availiable outputs - the time to execute the command or an error message if
+We can read flag.txt !, now we need to discover the flag using our only
+two availiable outputs - the time to execute a command or an error message if
 such error produces.
-we can do this by going letter by letter and executing a command that compares
-a selected letter with a letter in the flag such that if the letters matchingthe output will be different so we can point out the matching letters and build the flag.
-There are two ways to do this, the first one is to use commands such
-that if the letter match it will take a longer time to execute the command and by doing
-so the runtime returned will be grater, an exemple of this is linked in the resources.
+We can do this by going letter by letter and executing a command that compares
+the selected letter with a letter in the flag such that if the letters match the output
+will be different so we can easily point out the matching letters and build the flag.
+There are two ways to do this, The first one is to use commands such
+that if the letter matches the execution time will be longer and by doing
+so the total runtime returned will be grater, an exemple of this is linked in the resources.
 the second one and the one that I used is to raise an exception if the letter match in
 the position such that we can the discovery of the letter is not time bound.
-for doing that I wrote the following code in python 3 using pwntools:
+for doing that I wrote the following code in python 3 using the pwntools module:
 ```
 ```python 3
 from pwn import remote
@@ -141,7 +145,7 @@ changed = True
 s.recvuntil('!\n')
 while changed:
     changed = False
-    for c in '_{}' +string.printable:
+    for c in '_{}' + string.printable:
     	print("testing {}".format(flag + c))
     	command = '''1/0 if open('flag.txt','r').read({})[{}] == ''{}' else 0\n'''.format(index + 1, index, c)
     	print(command)
@@ -156,13 +160,13 @@ while changed:
 ```
 
 ```
-as you can see, the code connects to the server and tries to build the flag by iterating
+as you can see, the code connects to the server and builds the flag by iterating
 over all the printable characters and checking if the command executed raises an
 error or not, the command simply checks if the character in a specific position
-match the current character and if it does it calculates 1/0 which in python
+matches the current tested character and if it does it calculates 1/0 which in python
 throw an exception (believe it or not there are langauges where 1/0 returns infinity)
-else it does nothing, if an error was raised then the letter is added to the built flag
-and the code move to iterate over the next character, if we finished iterating over all
+else the command does nothing, if an error was raised then the letter is added to the flag
+and the code moves to iterate over the next character in the flie, if we finished iterating over all
 the characters and none of them raised a flag we can conclude that we discovered all the
 flag, and we can see that the code does just that:
 ```
@@ -170,10 +174,10 @@ flag, and we can see that the code does just that:
 
 ```
 Side note: when writing the writeup I thought about another very easy way to get the
-flag, we know that we see errors happening in the execution of commends so
-we can just raise an error with flag!, granted you need to use the error type NameError to raise an error
-with a string but it is still a much easier and very cool way to get the flag, you
-can see it in action in the following picture:
+flag, We know that we can see errors happening in the execution of commends so
+we can just raise an error with the flag !, for that you need you need to use the error
+type NameError to raise an error with a string but it is still a much easier and very cool
+ way to get the flag, you can see it in action in the following picture:
 ```
 ![](assets//images//timed_5.png)
 
@@ -188,27 +192,30 @@ hint : Think about program I/O on linux
 **tjctf{ptys_sure_are_neat}**
 
 ```
-This challenge was very fair in my opinion but it was easy to overcomplicate it (as I did in the beginning).
+This challenge was very fair in my opinion but it was easy to overcomplicate it
+(as I admittedly did in the beginning).
 When you connect to the server you are greeted with the following messege:
 ```
 ![](assets//images//truly_terrible_why_1.png)
 
 ```
 and for every input we give no output is returned.
-First I tried doing blind reading of the files in the server using similar methods as seen I used in Timed but
-the only true way I found to do that was to exit the server every time a character match... which quickly
-lead to me being banned from the server and then I stopped and moved to other challenges, in the meantime
-the challenge was patched and exit no longer worked, but alse the hint was published.
+First I tried doing blind reading of the files in the server using similar methods as I used in Timed but
+the only true way I found to do that was to disconnect from the server using exit
+every time a character match... which quickly led to me being banned from the server and
+so I stopped and moved to other challenges.
+in the meantime the challenge was patched and using the exit command no longer worked,
+and the hint was published.
 as the hint suggested there is something off about the I/O of the shell
-such that we can see the output so I tried using output redirection so that the command ouput will be redircted
-to the standard output (File descriptor 0) et voila:
+such that we can't see the output.
+and so I tried using output redirection so that the output of the commands will be redircted
+to the standard output (file descriptor 0) et voila:
 ```
 ![](assets//images//truly_terrible_why_2.png)
 
 ```
-We got a working shell!, from thereon I tried getting an interactive shell using the common methods
-(listed in resources) and used redirection to spawn a new shell with the output redirected to standard
-output:
+We got a working shell !, from thereon I tried getting an interactive shell using the common methods
+(listed in resources) and spawned a new shell with the output redirected to standard output:
 ```
 ![](assets//images//truly_terrible_why_3.png)
 
@@ -222,7 +229,7 @@ Let's see what is written in the text files:
 ```
 From the messege we can assume that we need to connect to other-user, and because we are given
 problem-user password we will probably need to use it for that.
-the first Thing I do in this situastion is to check the user sodu privillages using sudo -l command:
+the first Thing I do in this situation is to check the user sodu privillages using sudo -l command:
 ```
 ![](assets//images//truly_terrible_why_5.png)
 
@@ -232,7 +239,8 @@ So we run /usr/bin/chguser as root:
 ![](assets//images//truly_terrible_why_6.png)
 
 ```
-As you can see by doing we connect to other-user and we are dropped at his home folder, and we got our flag.
+And as you can see by doing we connect to other-user and we are dropped at his home folder,
+and we got our flag.
 ```
 **Resources:**
 * Getting fully interactive shell : https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/
