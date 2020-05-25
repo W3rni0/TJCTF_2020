@@ -6,7 +6,7 @@ TJCTF is a Capture the Flag (CTF) competition hosted by TJHSST's Computer Securi
 
 # Miscellaneous
 
-### A First Step
+## A First Step
 Every journey has to start somewhere -- this one starts here (probably).
 The first flag is tjctf{so0p3r_d0oper_5ecr3t}. Submit it to get your first points!
 
@@ -16,16 +16,16 @@ The first flag is tjctf{so0p3r_d0oper_5ecr3t}. Submit it to get your first point
 Flag is in the challenge's description
 ```
 
-### Discord
+## Discord
 Strife, conflict, friction, hostility, disagreement. Come chat with us! We'll be sending out announcements and other important information, and maybe even a flag!
 
 **tjctf{we_love_wumpus}**
 
 ```
-Flag is pinned in the Discord server's announcements channel
+Flag is pinned in the Discord server announcements channel
 ```
 
-### Censorship
+## Censorship
 My friend has some top-secret government intel. He left a message, but the government censored him! They didn't want the information to be leaked, but can you find out what he was trying to say?
 
 ` nc p1.tjctf.org 8003 `
@@ -72,12 +72,12 @@ and during debugging I noticed something strange is happening with the output:
 as you can see the server is actually returing us the flag each time we answer correctly.
 but, we can't see it when the output is printed in the terminal,
 the reason is that '\r' symbol after the flag, the symbol stands for carriage return,
-and in most terminal nowdays it deletes the written messege and returns the cursor to the start of line,
+and in most terminal nowdays it deletes the written message and returns the cursor to the start of line,
 using this symbol can actually make cool loking animation and most of the animation
 we see in terminals nowdays use this symbol.
 ```
 
-### Timed
+## Timed
 I found this cool program that times how long Python commands take to run! Unfortunately, the owner seems very paranoid, so there's not really much that you can test. The flag is located in the file flag.txt on the server.
 
 ` nc p1.tjctf.org 8005`
@@ -85,18 +85,18 @@ I found this cool program that times how long Python commands take to run! Unfor
 **tjctf{iTs_T1m3_f0r_a_flaggg}**
 
 ```
-When we connect to the server we get the following messege:
+When we connect to the server we get the following message:
 ```
 ![](assets//images//timed_1.png)
 
 ```
-I tried using Unix commands first and quickly discovered by the error messeges
+I tried using Unix commands first and quickly discovered by the error messages
 that the commands need to be python commands, furthermore, we can't see the output
 of the executed commands and but only the time it took for the commands to execute
 or an error message if an error occurred while executing the commands.
 I tried using python commands and modules
 to escape the shell or get a reverse shell going from the server to my host,
-for each command I tried I got the following messege:
+for each command I tried I got the following message:
 ```
 ![](assets//images//timed_2.png)
 
@@ -112,7 +112,7 @@ exception:
 ![](assets//images//timed_python3.png)
 
 ```
-executing basestring in the server didn't return an error messege so I determined
+executing basestring in the server didn't return an error message so I determined
 that the enviroment is python 2, in this point I tried to check if I can read the
 file flag.txt:
 ```
@@ -185,7 +185,7 @@ type NameError to raise an error with a string but it is still a much easier and
 * Pwntools : http://docs.pwntools.com
 * All-Army Cyberstakes! Dumping SQLite Database w/ Timing Attack :  https://youtu.be/fZ3mPRctbO0
 
-### Truly Terrible Why
+## Truly Terrible Why
 Your friend gave you a remote shell to his computer and challenged you to get in, but something seems a little off... The terminal you have seems almost like it isn't responding to any of the commands you put in! Figure out how to fix the problem and get into his account to find the flag! Note: networking has been disabled on the remote shell that you have. Also, if the problem immediately kicks you off after typing in one command, it is broken. Please let the organizers know if that happens.
 hint : Think about program I/O on linux
 
@@ -194,7 +194,7 @@ hint : Think about program I/O on linux
 ```
 This challenge was very fair in my opinion but it was easy to overcomplicate it
 (as I admittedly did in the beginning).
-When you connect to the server you are greeted with the following messege:
+When you connect to the server you are greeted with the following message:
 ```
 ![](assets//images//truly_terrible_why_1.png)
 
@@ -227,7 +227,7 @@ Let's see what is written in the text files:
 ![](assets//images//truly_terrible_why_4.png)
 
 ```
-From the messege we can assume that we need to connect to other-user, and because we are given
+From the message we can assume that we need to connect to other-user, and because we are given
 problem-user password we will probably need to use it for that.
 the first Thing I do in this situation is to check the user sodu privillages using sudo -l command:
 ```
@@ -246,7 +246,7 @@ and we got our flag.
 * Getting fully interactive shell : https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/
 * Linux Redirection : https://www.guru99.com/linux-redirection.html
 
-### Zipped Up
+## Zipped Up
 My friend changed the password of his Minecraft account that I was using so that I would stop being so addicted. Now he wants me to work for the password and sent me this zip file. I tried unzipping the folder, but it just led to another zipped file. Can you find me the password so I can play Minecraft again?
 
 [link](https://static.tjctf.org/663d7cda5bde67bd38a8de1f07fb9fab9dd8dd0b75607bb459c899acb0ace980_0.zip)
@@ -314,33 +314,32 @@ get_flag
 And after 829 (!) files unzipped we find the first (and afaik the only) txt file that contains the flag.
 ```
 ***
-
-# Web
-
-### Broken Button
-This site is telling me all I need to do is click a button to find the flag! Is it really that easy?
-
-[link](https://broken_button.tjctf.org/)
-
-**tjctf{wHa1_A_Gr8_1nsp3ct0r!}**
-
-```
-when we go to the site we get this massage:
-```
-![](assets//images//broken_button_1.png)
-```
-If we Inspect the site (Ctrl+Shift+I) we see that there is a hidden button in
-the HTML code:
-```
-![](assets//images//broken_button_2.png)
-```
-And when we look at the HTML file that is referenced by the by the hidden
-button we get our flag.
-```
-
-***
 # Cryptography
-### Speedrunner
+
+## Circles
+Some typefaces are mysterious, like this one - its origins are an enigma wrapped within a riddle, indeed.
+
+hint : To obtain the flag, you should find the font that was used to encode the message in the picture. If you Google the description of the problem, the first website that pops up seems promising. Using a dictionary to guess/bruteforce words without finding the font will not help you. Each circle in the image represents an alphanumeric character that is part of the flag. The brackets and the underscore in the image are NOT part of the font used to encrypt the flag.
+
+![](assets//images//circles_1.png)
+
+**tjctf{B3auT1ful_f0Nt}**
+
+```
+This challenge was really guessy and quite frustrating, as the hint suggested if we search for the challenge description
+we find the site fonts.com and by searching the word circular (yeah I know) we find our typeface:
+```
+![](assets//images//circles_2.png)
+
+```
+now that we know the name of the typeface lets find its characters map,
+by seaching just that I found the typeface character map (linked below) and decoded the flag.
+```
+**Resources:**
+* USF Circular Designs : https://www.fonts.com/font/ultimate-symbol/usf-circular-designs/packages
+* Character map : https://www.fonts.com/font/ultimate-symbol/usf-circular-designs/regular
+
+## Speedrunner
 I want to make it into the hall of fame -- a top runner in "The History of American Dad Speedrunning". But to do that, I'll need to be faster. I found some weird parts in the American Dad source code. I think it might help me become the best.
 
 [link](https://static.tjctf.org/6e61ec43e56cff1441f4cef46594bf75869a2c66cb47e86699e36577fbc746ff_encoded.txt)
@@ -356,7 +355,7 @@ CSLCO{WNF_CNLQ_WNF_CNLQ_PX_OJBC_PX_OJBC}
 We can notice that the format of the last line somewhat matches the format for the flag so we can
 assume the cipher is letter substitution, a type of cipher where each letter in
 the plaintext is  subtituted with another letter , I copied the text to CyberText
-and tried to use shift ciphers to decrpyt the messege, shift cipher are a type
+and tried to use shift ciphers to decrpyt the message, shift cipher are a type
 of cipher where every letter is shifted by a known offset to a different letter,
 ROT13 and Ceaser Cipher are some famous exemple of this type of cipher where the
 offset is 13 and 3 respectably, with an offset of 17 we get the following message:
@@ -370,10 +369,82 @@ TJCTF{NEW_TECH_NEW_TECH_GO_FAST_GO_FAST}
 * Ceaser Cipher : https://en.wikipedia.org/wiki/Caesar_cipher
 * Substitution Cipher : https://en.wikipedia.org/wiki/Substitution_cipher
 
+## Tap Dancing
+My friend is trying to teach me to dance, but I am not rhythmically coordinated! They sent me a list of dance moves but they're all numbers! Can you help me figure out what they mean so I can learn the dance?
+
+[link](https://static.tjctf.org/518d6851c71c5482dbd5bbe812b678684238c8f4e9e9b3d95a188f7db83a0870_cipher.txt)
+
+
+
+**tjctf{m0rsen0tb4se3}**
+
+```
+in the link we get the following cipher:
+```
+1101111102120222020120111110101222022221022202022211
+```
+As you can see there are three symbol in this cipher and suspiciously one of them is sparse,
+so I assumed that this is morse (and honestly it will be wierd if there isn't even one morse challenge in a CTF)
+I assumed that zeros symbolize spaces and the twos and ones are . and - respectably, I got the following morse code:
+```
+-- ----- .-. ... . -. ----- - -... ....- ... . ...--
+
+```
+I plugged the morse code into CyberChef and got the flag.
+```
+
+## Typewriter
+Oh no! I thought I typed down the correct flag for this problem on my typewriter, but it came out all jumbled on the paper. Someone must have switched the inner hammers around! According to the paper, the flag is zpezy{ktr_gkqfut_hxkhst_tyukokkgotyt_hoftqhhst_ykxoz_qxilrtxiyf}.
+
+hint:a becomes q, b becomes w, c becomes e, f becomes y, j becomes p, t becomes z, and z becomes m. Do you see the pattern?
+
+**tjctf{red_orange_purple_efgrirroiefe_pineapple_fruit_auhsdeuhfn}**
+```
+As the hint suggested this is a qwerty monoalphabetic cipher,
+meaning that every letter is subtituted with the corresponding in the keyboard with the same position
+(from up to down and from left to right).
+for decrpyting that cipher I used the awesome site dcode.fr using theirs monoalphabetic decoder
+with the key: QWERTYUIOPASDFGHJKLZXCVBNM and got the flag.
+```
+**Resources:**
+* decode.fr : https://www.dcode.fr/en
+* qwerty : https://en.wikipedia.org/wiki/QWERTY
+
+## Titanic
+I wrapped tjctf{} around the lowercase version of a word said in the 1997 film "Titanic" and created an MD5 hash of it: 9326ea0931baf5786cde7f280f965ebb.
+
+**tjctf{marlborough's}**
+```
+this challenge is very straightforward but steggered me for a long time because I couldn't find the right word,
+We know that our flag is said in the movie so sensibly we need to look for the script, I found one of them online
+and used a tool named cewl to make the script a wordlist, after that I wrote a shrt python script that read every word,
+make it lowercase and wrap it with the flag format, and then I ran Hashcat on it BUT it didn't work...
+After that I tried doing the same on several other scripts and none of them word.
+Now what's worked for in the end was to use subtitles and not the original script in the hope that some of the words
+were different, for that I used the subtitles listed below, the file looks like that:
+```
+![](assets//images//titanic_1.png)
+```
+There was a lot of work to do obviously so I wrote a short script that removes the unnecessary characters,
+saparetes the words, and wraps them in the flag format, now that we finally have the wordlist (added below) we can use hashcat,
+a program which breaks hashes using dictionary attack, we run hashcat using the following commands:
+hashcat -a 0 -m 0 hash.txt wordlist.txt
+and get the following output:
+```
+![](assets//images//titanic_2.png)
+
+
+**Resources:**
+* subtitle Titanic.1997.1080p.720p.BluRay.x264.[YTS.AG] : https://yts-subs.com/subtitles/titanic19971080p720pblurayx264ytsag-english-100199
+* wordlist :  [link](assets//wordlists//titanic_wordlist.txt)
+* CeWL : https://tools.kali.org/password-attacks/cewl
+* hashcat : https://tools.kali.org/password-attacks/hashcat
+
+
 ***
 # Reversing
 
-### Forwarding
+## Forwarding
 It can't be that hard... right?
 
 [link](https://static.tjctf.org/d9c4527bc1d5c58c1192f00f2e2ff68f84c345fd2522aeee63a0916897197a7a_forwarding)
@@ -399,3 +470,99 @@ and got the following output:
 **Resources:**
 * ELF file : https://en.wikipedia.org/wiki/Executable_and_Linkable_Form
 * Regex : https://en.wikipedia.org/wiki/Regular_expression
+
+***
+
+# Web
+
+## Broken Button
+This site is telling me all I need to do is click a button to find the flag! Is it really that easy?
+
+[link](https://broken_button.tjctf.org/)
+
+**tjctf{wHa1_A_Gr8_1nsp3ct0r!}**
+
+```
+when we go to the site we get this massage:
+```
+![](assets//images//broken_button_1.png)
+```
+If we Inspect the site (Ctrl+Shift+I) we see that there is a hidden button in
+the HTML code:
+```
+![](assets//images//broken_button_2.png)
+```
+And when we look at the HTML file that is referenced by the by the hidden
+button we get our flag.
+```
+## File Viewer
+So I've been developing this really cool site where you can read text files! It's still in beta mode, though, so there's only six files you can read.
+
+Hint : The flag is in one directory somewhere on the server, all you have to do is find it...Oh wait. You don't have a shell, do you?
+
+[link](http://file_viewer.tjctf.org/)
+
+**tjctf{n1c3_j0b_with_lf1_2_rc3}**
+```
+Here is another challenge I spent a lot of times (and tears) on mostly because I was stubborn and didn't try
+the tools I have.
+when we go to the site we get the following message:
+```
+![](assets//images//file_viewer_1.png)
+```
+When we pick a random file from the list, I chose pinnapples.txt we get:
+```
+![](assets//images//file_viewer_2.png)
+```
+Now take a look at the address for the file, as we can see, there is a PHP file which takes as an argument a file variable
+which is in our case sets to pinnapples.txt, lets try to see if we can see other files in the server,
+I guessed this is a linux server (which most servers are) and tried to change the variable to /etc/passwd
+a file which is by default accessible to all users and services on the server:
+```
+![](assets//images//file_viewer_3.png)
+
+```
+Jackpot! we have local file inclusion vulnerability on the machine, which means that we can read any file on this system.
+At this point I will spare you all the troubles I went through to find what to do next and skip to the solution,
+we can use PayloadAllTheThing, A great github repository linked below for finding web payloads, and search for a payload
+which works for us, I eventually used the data:// which posts data to the server side and injects our PHP code,
+I used the following payload which let us run commands in the server:
+
+ data://text/plain;base64,PD9waHAgc3lzdGVtKCRfR0VUWydjbWQnXSk7ZWNobyAnU2hlbGwgZG9uZSAhJzsgPz4=&cmd=**your command**
+
+ the payloads injects the following code to the server in base64 format:
+```
+
+```php
+<?php system($_GET['cmd']);echo 'Shell done !'; ?>
+```
+```
+Which executes in the systems the value of the cmd variable  and echoes 'Shell done'.
+by using the ls command we get the following:
+```
+![](assets//images//file_viewer_4.png)
+
+```
+We see we have a strange directory our current directory when use ls in the folder we get:
+```
+![](assets//images//file_viewer_5.png)
+
+```
+We found our flag, now for us to read the flag we need to decode the file to base 64.
+The reason is that if we read a PHP file without encoding it the file will be executed
+beacuse the web browser reads the content of the file as code and not text, I used the following payload for that:
+PD9waHAgc3lzdGVtKCRfR0VUWydjbWQnXSk7ZWNobyAnU2hlbGwgZG9uZSAhJzsgPz4=&cmd=cat i_wonder_whats_in_here/* | base64
+which roughly translates to:
+```
+```php
+<?php system($_GET['cat i_wonder_whats_in_here/* | base64']);echo 'Shell done !'; ?>
+```
+```
+And lo and behold we got our base 64 encoded flag! :
+```
+![](assets//images//file_viewer_6.png)
+
+**Resources:**
+* PayloadAllTheThing : https://github.com/swisskyrepo/PayloadsAllTheThings/
+ * The used payload: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion#wrapper-data
+* File Inclusion Vulnerability : https://www.offensive-security.com/metasploit-unleashed/file-inclusion-vulnerabilities/
