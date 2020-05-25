@@ -2,6 +2,11 @@
 
 TJCTF is a Capture the Flag (CTF) competition hosted by TJHSST's Computer Security Club. It is an online, jeopardy-style competition targeted at high schoolers interested in Computer Science and Cybersecurity. Participants may compete on a team of up to 5 people, and will solve problems in categories such as Binary Exploitation, Reverse Engineering, Web Exploitation, Forensics, and Cryptography in order to gain points. The eligible teams with the most points will win prizes at the end of the competition.
 
+```
+This is my first writeup of a CTF and the fifth or sixth CTF I participated in,
+if you have any comments, questions, or found any mistakes (which I'm sure there are a lot of)
+please let me know. Thanks for reading!
+```
 ***
 
 # Miscellaneous
@@ -392,7 +397,8 @@ I assumed that zeros symbolize spaces and the twos and ones are . and - respecta
 ```
 I plugged the morse code into CyberChef and got the flag.
 ```
-
+**Resources**
+* Morse Code (do i really need to add that?!) : https://en.wikipedia.org/wiki/Morse_code
 ## Typewriter
 Oh no! I thought I typed down the correct flag for this problem on my typewriter, but it came out all jumbled on the paper. Someone must have switched the inner hammers around! According to the paper, the flag is zpezy{ktr_gkqfut_hxkhst_tyukokkgotyt_hoftqhhst_ykxoz_qxilrtxiyf}.
 
