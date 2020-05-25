@@ -13,7 +13,7 @@ The first flag is tjctf{so0p3r_d0oper_5ecr3t}. Submit it to get your first point
 **tjctf{so0p3r_d0oper_5ecr3t}**
 
 ```
-Flag is in the challenge text
+Flag is in the challenge's description
 ```
 
 ### Discord
@@ -37,12 +37,12 @@ This challenge I solved by mistake actually but the solution is
 somewhat straightforward, when we connect to the server
 we are greeted with the following meessege:
 ```
-![](assets//images//Censorship_1.png)
+![](assets//images//censorship_1.png)
 
 ```
 When you submit the answer (in this case it's obviously 27) we get following meessege:
 ```
-![](assets//images//Censorship_2.png)
+![](assets//images//censorship_2.png)
 
 ```
 Which is not the flag (trust me i checked multiple times), when we sumbit a wrong answer we get nothing, my first thought was
@@ -67,7 +67,7 @@ s.close()
 and during debugging I noticed something strange is happening with
 the output:
 ```
-![](assets//images//Censorship_3.png)
+![](assets//images//censorship_3.png)
 
 ```
 as you can see the server is actually returing to us the flag each
