@@ -651,9 +651,9 @@ Now let's saparete the channels and look at channel 2:
 
 ```
 And we got the image, There are some weird symbols in there which look like emojis
-but not quite, This is actually symbols from a font called Wingdings which was developed
+but not quite, These are actually symbols from a font called Wingdings which was developed
 by Microsoft and was used before emojis existed (weird times...), and gained notoriety after
-the 9/11 attacks, we can use dcode.fr again with their WingDings font translator to
+the 9/11 attacks, we can use dcode.fr again with their Wingdings font translator to
 get our flag:
 ```
 ![](assets//images//rap_god_3.png)
