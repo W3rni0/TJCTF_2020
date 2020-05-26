@@ -9,6 +9,27 @@ please let me know. Thanks for reading!
 ```
 ***
 
+# Table of Contents
+* [Miscellaneous](#Miscellaneous)
+  - [A First Step](#a-first-step)
+  - [Discord](#discord)
+  - [Censorship](#censorship)
+  - [Timed](#timed)
+  - [Truly Terrible Why](#truly-terrible-why)
+  - [Zipped Up](#zipped-up)
+* [Cryptography](#cryptography)
+  - [Circles](#circles)
+  - [Speedrunner](#speedrunner)
+  - [Tap Dancing](#tap-dancing)
+  - [Typewriter](#typewriter)
+  - [Titanic](#titanic)
+* [Reversing](#reversing)
+  - [Forwarding](#forwarding)
+* [Web](#web)
+  - [Broken Button](#broken-button)
+  - [File Viewer](#file-viewer)
+
+***
 # Miscellaneous
 
 ## A First Step
@@ -69,16 +90,16 @@ print(s.recv())
 s.close()
 ```
 ```
-and during debugging I noticed something strange is happening with the output:
+And during debugging I noticed something strange is happening with the output:
 ```
 ![](assets//images//censorship_3.png)
 
 ```
-as you can see the server is actually returing us the flag each time we answer correctly.
-but, we can't see it when the output is printed in the terminal,
-the reason is that '\r' symbol after the flag, the symbol stands for carriage return,
-and in most terminal nowdays it deletes the written message and returns the cursor to the start of line,
-using this symbol can actually make cool loking animation and most of the animation
+As you can see the server is actually returing us the flag each time we answer correctly.
+But, We can't see it when the output is printed in the terminal,
+The reason is that '\r' symbol after the flag, The symbol stands for carriage return,
+And in most terminal nowdays it deletes the written message and returns the cursor to the start of line,
+Using this symbol can actually make cool looking animation and most of the animation
 we see in terminals nowdays use this symbol.
 ```
 
@@ -97,7 +118,7 @@ When we connect to the server we get the following message:
 ```
 I tried using Unix commands first and quickly discovered by the error messages
 that the commands need to be python commands, furthermore, we can't see the output
-of the executed commands and but only the time it took for the commands to execute
+of the executed commands but only the time it took for the commands to execute
 or an error message if an error occurred while executing the commands.
 I tried using python commands and modules
 to escape the shell or get a reverse shell going from the server to my host,
@@ -117,8 +138,8 @@ exception:
 ![](assets//images//timed_python3.png)
 
 ```
-executing basestring in the server didn't return an error message so I determined
-that the enviroment is python 2, and so I tried to check if I can read a
+Executing basestring in the server didn't return an error message so I determined
+that the environment is python 2, and so I tried to check if I can read a
 file named flag.txt using python 2 I/O functions:
 ```
 ![](assets//images//timed_3.png)
@@ -132,8 +153,9 @@ the selected letter with a letter in the flag such that if the letters match the
 will be different so we can easily point out the matching letters and build the flag.
 There are two ways to do this, The first one is to use commands such
 that if the letter matches the execution time will be longer and by doing
-so the total runtime returned will be grater, an exemple of this is linked in the resources.
-the second one and the one that I used is to raise an exception if the letter match in
+so the total runtime returned will be grater, This type of attack is called
+Timing Attack and an exemple of this is linked in the resources.
+The second one and the one that I used is to raise an exception if the letter match in
 the position such that we can the discovery of the letter is not time bound.
 for doing that I wrote the following code in python 3 using the pwntools module:
 ```
@@ -165,11 +187,11 @@ while changed:
 ```
 
 ```
-as you can see, the code connects to the server and builds the flag by iterating
+As you can see, the code connects to the server and builds the flag by iterating
 over all the printable characters and checking if the command executed raises an
 error or not, the command simply checks if the character in a specific position
-matches the current tested character and if it does it calculates 1/0 which in python
-throw an exception (believe it or not there are langauges where 1/0 returns infinity)
+matches the current tested character and if so it calculates 1/0 which in python
+throw an exception (believe it or not there are langauges and modules where 1/0 returns infinity)
 else the command does nothing, if an error was raised then the letter is added to the flag
 and the code moves to iterate over the next character in the flie, if we finished iterating over all
 the characters and none of them raised a flag we can conclude that we discovered all the
@@ -180,9 +202,9 @@ flag, and we can see that the code does just that:
 ```
 Side note: when writing the writeup I thought about another very easy way to get the
 flag, We know that we can see errors happening in the execution of commends so
-we can just raise an error with the flag !, for that you need you need to use the error
+we can just raise an error with the flag !, For that you need you need to use the error
 type NameError to raise an error with a string but it is still a much easier and very cool
- way to get the flag, you can see it in action in the following picture:
+way to get the flag, you can see it in action in the following picture:
 ```
 ![](assets//images//timed_5.png)
 
@@ -206,23 +228,23 @@ When you connect to the server you are greeted with the following message:
 ![](assets//images//truly_terrible_why_1.png)
 
 ```
-and for every input we give no output is returned.
-First I tried doing blind reading of the files in the server using similar methods as I used in Timed but
+And for every input we give no output is returned.
+First I tried doing blind enumarating of the files in the server using similar methods as I used in Timed but
 the only true way I found to do that was to disconnect from the server using exit
 every time a character match... which quickly led to me being banned from the server and
 so I stopped and moved to other challenges.
-in the meantime the challenge was patched and using the exit command no longer worked,
-and the hint was published.
-as the hint suggested there is something off about the I/O of the shell
+In the meantime the challenge was patched and using the exit command no longer worked,
+And the hint was published.
+As the hint suggested there is something off about the I/O of the shell
 such that we can't see the output.
-But, we know that we are connected to the standard input of the shell beacuse we can execute commands,
-so I tried using redirection so that the output of the commands will be redircted
+But, We know that we are connected to the standard input of the shell beacuse we can execute commands.
+So I tried using output redirection so that the output of the commands will be redircted
 to the standard input (file descriptor 0) et voila:
 ```
 ![](assets//images//truly_terrible_why_2.png)
 
 ```
-We got a working shell !, from thereon I tried getting an interactive shell using the common methods
+We got a working shell !, From thereon I tried getting an interactive shell using the common methods
 (listed in resources) and spawned a new shell with the output redirected to standard output:
 ```
 ![](assets//images//truly_terrible_why_3.png)
@@ -235,9 +257,9 @@ Let's see what is written in the text files:
 ![](assets//images//truly_terrible_why_4.png)
 
 ```
-From the message we can assume that we need to connect to other-user, and because we are given
+From the message we can assume that we need to connect to other-user, And because we are given
 problem-user password we will probably need to use it for that.
-the first Thing I do in this situations is to check the user sodu privillages using sudo -l command:
+The first Thing I do in this situations is to check the user sodu privillages using sudo -l command:
 ```
 ![](assets//images//truly_terrible_why_5.png)
 
@@ -248,7 +270,7 @@ So we run /usr/bin/chguser as root:
 
 ```
 And as you can see by doing we connect to other-user and we are dropped at his home folder,
-and we got our flag.
+And we got our flag.
 ```
 **Resources:**
 * Getting fully interactive shell : https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/
@@ -263,11 +285,11 @@ My friend changed the password of his Minecraft account that I was using so that
 ```
 This type of challange is pretty common in CTFs and most of the times it can be summed
 up to tweaking the code so that it will work with the current challenge,
-as you can see each compressed file contains a txt and another compressed file,
-if you look further you can see that there is a false flag tjctf{n0t_th3_fl4g}
-in some txt files (actually in all of them but one).
-so I wrote (mostly tweaked) my code to not only find compressed files in the working directory and unzip them,
-but also check the content of the txt file and if it's not the false flag print it and stop the execution:
+As you can see each compressed file contains a txt and another compressed file in a directory,
+If you look further you can see that there is a false flag tjctf{n0t_th3_fl4g}
+in some txt files (actually in all of them but one afaik).
+So, I wrote (mostly tweaked) a short bash scipt to not only find compressed files in the working directory and unzip them,
+But also check the content of the txt file and if it's not the false flag print it and stop the execution:
 ```
 ```bash
 #!/bin/bash
@@ -319,12 +341,15 @@ echo start
 get_flag
 ```
 ```
-And after 829 (!) files unzipped we find the first (and afaik the only) txt file that contains the flag.
+And after 829 (!) files unzipped we find the first (and afaik the only) text file that contains the flag.
 ```
 ***
 # Cryptography
 
 ## Circles
+
+**tjctf{B3auT1ful_f0Nt}**
+
 Some typefaces are mysterious, like this one - its origins are an enigma wrapped within a riddle, indeed.
 
 hint : To obtain the flag, you should find the font that was used to encode the message in the picture. If you Google the description of the problem, the first website that pops up seems promising. Using a dictionary to guess/bruteforce words without finding the font will not help you. Each circle in the image represents an alphanumeric character that is part of the flag. The brackets and the underscore in the image are NOT part of the font used to encrypt the flag.
@@ -334,14 +359,14 @@ hint : To obtain the flag, you should find the font that was used to encode the 
 **tjctf{B3auT1ful_f0Nt}**
 
 ```
-This challenge was really guessy and quite frustrating, as the hint suggested if we search for the challenge description
-we find the site fonts.com and by searching the word circular (yeah I know) we find our typeface:
+This challenge was really guessy and quite frustrating, As the hint suggested if we search for the challenge description
+we find the site fonts.com and by searching the word circular in it (yeah I know) we find our typeface:
 ```
 ![](assets//images//circles_2.png)
 
 ```
-now that we know the name of the typeface lets find its characters map,
-by seaching just that I found the typeface character map (linked below) and decoded the flag.
+Now that we know the name of the typeface lets find its characters map,
+By seaching just that I found the typeface character map (linked below) and decoded the flag.
 ```
 **Resources:**
 * USF Circular Designs : https://www.fonts.com/font/ultimate-symbol/usf-circular-designs/packages
@@ -362,11 +387,11 @@ CSLCO{WNF_CNLQ_WNF_CNLQ_PX_OJBC_PX_OJBC}
 ```
 We can notice that the format of the last line somewhat matches the format for the flag so we can
 assume the cipher is letter substitution, a type of cipher where each letter in
-the plaintext is  subtituted with another letter , I copied the text to CyberText
-and tried to use shift ciphers to decrpyt the message, shift cipher are a type
-of cipher where every letter is shifted by a known offset to a different letter,
+the plaintext is subtituted with another letter, I copied the text to CyberText
+and tried to use shift ciphers to decrpyt the message, Shift cipher are a type
+of cipher in which every letter is shifted by a known offset to a different letter,
 ROT13 and Ceaser Cipher are some famous exemple of this type of cipher where the
-offset is 13 and 3 respectably, with an offset of 17 we get the following message:
+offsets are 13 and 3 respectably, with an offset of 17 we get the following message:
 ```
 CAN YOU PLEASE NOT USE THE TERM "WORLD RECORD'? IT'S VERY MISLEADING AND ASSUMES THAT THE VIDEO POSTED IS THE FASTEST TIME, WHERE IN FACT SOMEONE ELSE COULD HAVE A FASTER, UNRECORDED VERSION. COULD YOU PLEASE USE THE TERM BKTWVEAAAVBMOFSRC (BEST KNOWN TIME WITH VIDEO EVIDENCE AS APPROVED AND VERIFIED BY MEMBERS OF THE SPEED RUNNING COMMUNITY) IN THE FUTURE. THIS WOULD HELP LOWER CONFUSION IN THESE TYPES OF VIDEOS IN REGARD TO THE EVER UPDATING AND EVOLVING NATURE OF THE SPEEDRUNNING COMMUNITY.
 
@@ -387,12 +412,12 @@ My friend is trying to teach me to dance, but I am not rhythmically coordinated!
 **tjctf{m0rsen0tb4se3}**
 
 ```
-in the link we get the following cipher:
+In the link we get the following cipher:
 ```
 1101111102120222020120111110101222022221022202022211
 ```
 As you can see there are three symbol in this cipher and suspiciously one of them is sparse,
-so I assumed that this is morse (and honestly it will be wierd if there isn't even one morse challenge in a CTF)
+So I assumed that this is morse (and honestly it will be weird if there isn't even one morse challenge in a CTF)
 I assumed that zeros symbolize spaces and the twos and ones are . and - respectably, I got the following morse code:
 ```
 -- ----- .-. ... . -. ----- - -... ....- ... . ...--
@@ -411,10 +436,10 @@ hint:a becomes q, b becomes w, c becomes e, f becomes y, j becomes p, t becomes 
 **tjctf{red_orange_purple_efgrirroiefe_pineapple_fruit_auhsdeuhfn}**
 ```
 As the hint suggested this is a qwerty monoalphabetic cipher,
-meaning that every letter is subtituted with the corresponding in the keyboard with the same position
+Meaning that every letter is subtituted with the corresponding in the keyboard with the same position
 (from up to down and from left to right).
-for decrpyting that cipher I used the awesome site dcode.fr using theirs monoalphabetic decoder
-with the key: QWERTYUIOPASDFGHJKLZXCVBNM and got the flag.
+For decrpyting that cipher I used an awesome site called dcode.fr and by using their monoalphabetic decoder
+with the key: QWERTYUIOPASDFGHJKLZXCVBNM I got the flag.
 ```
 **Resources:**
 * decode.fr : https://www.dcode.fr/en
@@ -427,17 +452,18 @@ I wrapped tjctf{} around the lowercase version of a word said in the 1997 film "
 ```
 this challenge is very straightforward but steggered me for a long time because I couldn't find the right word,
 We know that our flag is said in the movie so sensibly we need to look for the script, I found one of them online
-and used a tool named cewl to make the script a wordlist, after that I wrote a shrt python script that read every word,
-make it lowercase and wrap it with the flag format, and then I ran Hashcat on it BUT it didn't work...
-After that I tried doing the same on several other scripts and none of them word.
-Now what's worked for in the end was to use subtitles and not the original script in the hope that some of the words
+and used a tool named CeWL to make the script a wordlist, After that I wrote a shrt python script that read every word,
+make it lowercase and wraps it with the flag format, and then I ran Hashcat on it.
+BUT it didn't work...
+After that I tried doing the same on several other scripts and none of them worked.
+Now what's worked for me in the end was to use subtitles and not the original script in the hope that some of the words
 were different, for that I used the subtitles listed below, the file looks like that:
 ```
 ![](assets//images//titanic_1.png)
 ```
-There was a lot of work to do obviously so I wrote a short script that removes the unnecessary characters,
-saparetes the words, and wraps them in the flag format, now that we finally have the wordlist (added below) we can use hashcat,
-a program which breaks hashes using dictionary attack, we run hashcat using the following commands:
+There was a lot of work to do obviously so I wrote a script that removes the unnecessary characters,
+saparetes the words, and wraps them in the flag format, now that we finally have the wordlist (added below)
+we can use hashcat, a program which breaks hashes using dictionary attack, we run hashcat using the following commands:
 hashcat -a 0 -m 0 hash.txt wordlist.txt
 and get the following output:
 ```
@@ -461,13 +487,13 @@ It can't be that hard... right?
 
 **tjctf{just_g3tt1n9_st4rt3d}**
 ```
-this time we get a file with the challenge, if we check the type of the file
+This time we get a file with the challenge, if we check the type of the file
 we can see that it is an ELF, a type of Unix executable:
 ```
 ![](assets//images//forwarding_1.png)
 ```
-I checked if the flag is saved in string format in the file, we
-can use the strings command to find strings in the executable, and then use
+I checked if the flag is saved in string format in the file, for that We
+can use the strings command which finds strings in the executable, And then use
 grep and regex to filter the strings in the binary for the flag
 I used the following command:
 
@@ -514,8 +540,8 @@ Hint : The flag is in one directory somewhere on the server, all you have to do 
 
 **tjctf{n1c3_j0b_with_lf1_2_rc3}**
 ```
-Here is another challenge I spent a lot of times (and tears) on mostly because I was stubborn and didn't try
-the tools I have.
+Here is another challenge I spent a lot of time (and tears) on mostly because I was stubborn and didn't try
+to use the resources I have.
 when we go to the site we get the following message:
 ```
 ![](assets//images//file_viewer_1.png)
@@ -535,7 +561,7 @@ a file which is by default accessible to all users and services on the server:
 Jackpot! we have local file inclusion vulnerability on the machine, which means that we can read any file on this system.
 At this point I will spare you all the troubles I went through to find what to do next and skip to the solution,
 we can use PayloadAllTheThing, A great github repository linked below for finding web payloads, and search for a payload
-which works for us, I eventually used the data:// which posts data to the server side and injects our PHP code,
+which works for us, I eventually used the data:// wrapper which posts data to the server side and injects our PHP code,
 I used the following payload which let us run commands in the server:
 
  data://text/plain;base64,PD9waHAgc3lzdGVtKCRfR0VUWydjbWQnXSk7ZWNobyAnU2hlbGwgZG9uZSAhJzsgPz4=&cmd=**your command**
