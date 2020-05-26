@@ -62,21 +62,20 @@ My friend has some top-secret government intel. He left a message, but the gover
 **tjctf{TH3_1llum1n4ti_I5_R3aL}**
 
 ```
-This challenge I solved by mistake actually but the solution is
-somewhat straightforward, when we connect to the server
-we are greeted with the following meessege:
+This challenge I solved by mistake (there are no mistakes just happy accidents) but the solution is
+somewhat straightforward, when we connect to the server we are greeted with the following meessege:
 ```
 ![](assets//images//censorship_1.png)
 
 ```
-When we submit the answer (in this case it's obviously 27) we get following meessege:
+When we submit the answer we get following meessege:
 ```
 ![](assets//images//censorship_2.png)
 
 ```
-Which is not the flag (trust me i checked multiple times), when we sumbit a wrong answer we get nothing,
+Which is not the flag (trust me i checked), when we sumbit a wrong answer we get nothing,
 my first thought was that the flag returned is random and there is a chance that the real flag will be returned,
-so i wrote a short python script which connects to the server, reads the question and answers it:
+so I wrote a short python script which connects to the server, reads the question and answers it:
 ```
 ```python 3
 from pwn import remote
@@ -123,8 +122,8 @@ I tried using Unix commands first and quickly discovered by the error messages
 that the commands need to be python commands, furthermore, we can't see the output
 of the executed commands but only the time it took for the commands to execute
 or an error message if an error occurred while executing the commands.
-I tried using python commands and modules
-to escape the shell or get a reverse shell going from the server to my host,
+I tried using python commands and modules to get a shell or get a reverse shell going
+from the server to my host.
 for each command I tried I got the following message:
 ```
 ![](assets//images//timed_2.png)
@@ -148,7 +147,7 @@ file named flag.txt using python 2 I/O functions:
 ![](assets//images//timed_3.png)
 
 ```
-We can read flag.txt !, now we need to discover the flag using our only
+We can read flag.txt!, now we need to discover the flag using our only
 two availiable outputs - the time to execute a command or an error message if
 such error produces.
 We can do this by going letter by letter and executing a command that compares
@@ -232,8 +231,8 @@ When you connect to the server you are greeted with the following message:
 
 ```
 And for every input we give no output is returned.
-First I tried doing blind enumarating of the files in the server using similar methods as I used in Timed but
-the only true way I found to do that was to disconnect from the server using exit
+First I tried doing blind enumaration of the files in the server using similar methods as I used in Timed
+but the only true way I found to do that was to disconnect from the server using exit
 every time a character match... which quickly led to me being banned from the server and
 so I stopped and moved to other challenges.
 In the meantime the challenge was patched and using the exit command no longer worked,
@@ -247,7 +246,7 @@ to the standard input (file descriptor 0) et voila:
 ![](assets//images//truly_terrible_why_2.png)
 
 ```
-We got a working shell !, From thereon I tried getting an interactive shell using the common methods
+We got a working shell!, From thereon I tried getting an interactive shell using the common methods
 (listed in resources) and spawned a new shell with the output redirected to standard input:
 ```
 ![](assets//images//truly_terrible_why_3.png)
@@ -587,7 +586,7 @@ We see we have a strange directory our current directory when use ls in the fold
 ![](assets//images//file_viewer_5.png)
 
 ```
-We found our flag, now for us to read the flag we need to decode the file to base 64.
+We found our flag, now for us to read the flag we need to encode the file to base64.
 The reason is that if we read a PHP file without encoding it the file will be executed
 beacuse the web browser reads the content of the file as code and not text, I used the following payload for that:
 PD9waHAgc3lzdGVtKCRfR0VUWydjbWQnXSk7ZWNobyAnU2hlbGwgZG9uZSAhJzsgPz4=&cmd=cat i_wonder_whats_in_here/* | base64
@@ -597,7 +596,7 @@ which roughly translates to:
 <?php system($_GET['cat i_wonder_whats_in_here/* | base64']);echo 'Shell done !'; ?>
 ```
 ```
-And lo and behold we got our base 64 encoded flag! :
+And lo and behold we got our base64 encoded flag! :
 ```
 ![](assets//images//file_viewer_6.png)
 
@@ -652,9 +651,9 @@ Now let's saparete the channels and look at channel 2:
 
 ```
 And we got the image, There are some weird symbols in there which look like emojis
-but not quite, This is actually symbols from A font called WingDings which was developed
-by Microsoft and was used before emojis existed (weird times), and gained notoriety after
-the 9/11 attacks, we can use for dcode.fr again with their WingDings font translator to
+but not quite, This is actually symbols from a font called Wingdings which was developed
+by Microsoft and was used before emojis existed (weird times...), and gained notoriety after
+the 9/11 attacks, we can use dcode.fr again with their WingDings font translator to
 get our flag:
 ```
 ![](assets//images//rap_god_3.png)
