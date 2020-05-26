@@ -215,8 +215,9 @@ in the meantime the challenge was patched and using the exit command no longer w
 and the hint was published.
 as the hint suggested there is something off about the I/O of the shell
 such that we can't see the output.
-and so I tried using output redirection so that the output of the commands will be redircted
-to the standard output (file descriptor 0) et voila:
+But, we know that we are connected to the standard input of the shell beacuse we can execute commands,
+so I tried using redirection so that the output of the commands will be redircted
+to the standard input (file descriptor 0) et voila:
 ```
 ![](assets//images//truly_terrible_why_2.png)
 
