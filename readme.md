@@ -118,8 +118,8 @@ exception:
 
 ```
 executing basestring in the server didn't return an error message so I determined
-that the enviroment is python 2, in this point I tried to check if I can read the
-file flag.txt:
+that the enviroment is python 2, and so I tried to check if I can read a
+file named flag.txt using python 2 I/O functions:
 ```
 ![](assets//images//timed_3.png)
 
@@ -194,6 +194,8 @@ type NameError to raise an error with a string but it is still a much easier and
 Your friend gave you a remote shell to his computer and challenged you to get in, but something seems a little off... The terminal you have seems almost like it isn't responding to any of the commands you put in! Figure out how to fix the problem and get into his account to find the flag! Note: networking has been disabled on the remote shell that you have. Also, if the problem immediately kicks you off after typing in one command, it is broken. Please let the organizers know if that happens.
 hint : Think about program I/O on linux
 
+`nc 52.205.246.189 9000`
+
 **tjctf{ptys_sure_are_neat}**
 
 ```
@@ -234,7 +236,7 @@ Let's see what is written in the text files:
 ```
 From the message we can assume that we need to connect to other-user, and because we are given
 problem-user password we will probably need to use it for that.
-the first Thing I do in this situation is to check the user sodu privillages using sudo -l command:
+the first Thing I do in this situations is to check the user sodu privillages using sudo -l command:
 ```
 ![](assets//images//truly_terrible_why_5.png)
 
@@ -399,6 +401,7 @@ I plugged the morse code into CyberChef and got the flag.
 ```
 **Resources**
 * Morse Code (do i really need to add that?!) : https://en.wikipedia.org/wiki/Morse_code
+
 ## Typewriter
 Oh no! I thought I typed down the correct flag for this problem on my typewriter, but it came out all jumbled on the paper. Someone must have switched the inner hammers around! According to the paper, the flag is zpezy{ktr_gkqfut_hxkhst_tyukokkgotyt_hoftqhhst_ykxoz_qxilrtxiyf}.
 
