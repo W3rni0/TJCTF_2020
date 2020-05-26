@@ -28,6 +28,9 @@ please let me know. Thanks for reading!
 * [Web](#web)
   - [Broken Button](#broken-button)
   - [File Viewer](#file-viewer)
+* [Forensics](#Forensics)
+  - [Ling Ling](#ling-ling)
+  - [Rap God](#rap-god)
 
 ***
 # Miscellaneous
@@ -245,7 +248,7 @@ to the standard input (file descriptor 0) et voila:
 
 ```
 We got a working shell !, From thereon I tried getting an interactive shell using the common methods
-(listed in resources) and spawned a new shell with the output redirected to standard output:
+(listed in resources) and spawned a new shell with the output redirected to standard input:
 ```
 ![](assets//images//truly_terrible_why_3.png)
 
@@ -426,7 +429,7 @@ I assumed that zeros symbolize spaces and the twos and ones are . and - respecta
 I plugged the morse code into CyberChef and got the flag.
 ```
 **Resources**
-* Morse Code (do i really need to add that?!) : https://en.wikipedia.org/wiki/Morse_code
+* Morse Code (do i really need to add that!?) : https://en.wikipedia.org/wiki/Morse_code
 
 ## Typewriter
 Oh no! I thought I typed down the correct flag for this problem on my typewriter, but it came out all jumbled on the paper. Someone must have switched the inner hammers around! According to the paper, the flag is zpezy{ktr_gkqfut_hxkhst_tyukokkgotyt_hoftqhhst_ykxoz_qxilrtxiyf}.
@@ -602,3 +605,61 @@ And lo and behold we got our base 64 encoded flag! :
 * PayloadAllTheThing : https://github.com/swisskyrepo/PayloadsAllTheThings/
  * The used payload: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion#wrapper-data
 * File Inclusion Vulnerability : https://www.offensive-security.com/metasploit-unleashed/file-inclusion-vulnerabilities/
+
+***
+# Forensics
+## Ling Ling
+Who made this meme? I made this meme! unless.....
+
+[link](https://static.tjctf.org/d25fe79e6276ed73a0f7009294e28c035437d7c7ffe2f46285e9eb5ac94b6bec_meme.png)
+
+**tjctf{ch0p1n_fl4gs}**
+
+```
+When we go to the link we get the following image:
+```
+![](https://static.tjctf.org/d25fe79e6276ed73a0f7009294e28c035437d7c7ffe2f46285e9eb5ac94b6bec_meme.png)
+```
+The meaning of the image is beyond me, Lets look at the image metadata, we can do that using the exiftool command:
+```
+![](assets//images//ling_ling_1.png)
+```
+And as you can see our flag is listed in the artist attribute.
+```
+**Resources**
+* Exiftool : https://linux.die.net/man/1/exiftool
+* Me when I saw the meme : https://i.kym-cdn.com/entries/icons/original/000/018/489/nick-young-confused-face-300x256-nqlyaa.jpg
+
+## Rap God
+My rapper friend Big Y sent me his latest track but something sounded a little off about it. Help me find out if he was trying to tell me something with it. Submit your answer as tjctf{message}
+
+[link](https://static.tjctf.org/302ed01b56ae5988e8b8ad8d9bba402a2934c71508593f5dc9e95aed913d20cf_BigYAudio.mp3)
+
+**tjctf{quicksonic}**
+```
+This was a nice audio steganography challange, When we hear the audio we can notice some weird buzzing,
+esecially in the left ear, So I assumed from experience that there is a channel with an hideen messege encoded in.
+For this challenge I used Sonic Visualiser but I think you can use most of the music processing programs out here,
+When we open the file in Sonic Visualiser and open the spectogram viewer we see the following:
+```
+![](assets//images//rap_god_1.png)
+
+```
+We got an encoded image in the audio!,
+Now let's saparete the channels and look at channel 2:
+```
+![](assets//images//rap_god_2.png)
+
+```
+And we got the image, There are some weird symbols in there which look like emojis
+but not quite, This is actually symbols from A font called WingDings which was developed
+by Microsoft and was used before emojis existed (weird times), and gained notoriety after
+the 9/11 attacks, we can use for dcode.fr again with their WingDings font translator to
+get our flag:
+```
+![](assets//images//rap_god_3.png)
+
+**Resources:**
+* Sonic Visualiser : https://www.sonicvisualiser.org/
+* Wingdings : https://en.wikipedia.org/wiki/Wingdings#9/11_attacks
+* dcode.fr Wingdings translator : https://www.dcode.fr/wingdings-font
