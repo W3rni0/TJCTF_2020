@@ -1,5 +1,8 @@
 # **TJCTF 2020**
 
+<p align="center">
+	<img  width="170" height="170" src="assets//images//logo.png">
+</p>
 TJCTF is a Capture the Flag (CTF) competition hosted by TJHSST's Computer Security Club. It is an online, jeopardy-style competition targeted at high schoolers interested in Computer Science and Cybersecurity. Participants may compete on a team of up to 5 people, and will solve problems in categories such as Binary Exploitation, Reverse Engineering, Web Exploitation, Forensics, and Cryptography in order to gain points. The eligible teams with the most points will win prizes at the end of the competition.
 
 
